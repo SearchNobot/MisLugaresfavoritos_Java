@@ -32,7 +32,7 @@ public class VistaLugarFragment extends Fragment {
    final static int RESULTADO_GALERIA = 2;
    final static int RESULTADO_FOTO = 3;
    private ImageView foto;
-   private Uri uriUltimaFoto;
+ //  private Uri uriUltimaFoto;
 
    private LugaresBD lugares;
    private AdaptadorLugaresBD adaptador;
@@ -59,7 +59,7 @@ public class VistaLugarFragment extends Fragment {
       usoLugar = new CasosUsoLugarFecha(getActivity(), this, lugares, adaptador);
 
       v = getView();
-      foto = v.findViewById(R.id.foto);
+      foto = v.findViewById(R.id.logo_tipo);
 
       v.findViewById(R.id.barra_mapa).setOnClickListener(
               new View.OnClickListener() { public void onClick(View view) {
@@ -70,15 +70,7 @@ public class VistaLugarFragment extends Fragment {
       v.findViewById(R.id.barra_telefono).setOnClickListener(
               new View.OnClickListener() {public void onClick(View view) {
                  usoLugar.llamarTelefono(lugar);  }  });
-      v.findViewById(R.id.camara).setOnClickListener(
-              new View.OnClickListener() {public void onClick(View view) {
-                 uriUltimaFoto = usoLugar.tomarFoto(RESULTADO_FOTO);  }  });
-      v.findViewById(R.id.galeria).setOnClickListener(
-              new View.OnClickListener() {public void onClick(View view) {
-                 usoLugar.ponerDeGaleria(RESULTADO_GALERIA);  }  });
-      v.findViewById(R.id.eliminar_foto).setOnClickListener(
-              new View.OnClickListener() {public void onClick(View view) {
-                 usoLugar.ponerFoto(pos, "", foto);  }  });
+
       v.findViewById(R.id.icono_hora).setOnClickListener(
               new View.OnClickListener() {
                  public void onClick(View view) { usoLugar.cambiarHora(pos); } });
@@ -120,7 +112,7 @@ public class VistaLugarFragment extends Fragment {
       }
       TextView url = v.findViewById(R.id.url);
       url.setText(lugar.getUrl());
-      TextView comentario = v.findViewById(R.id.comentario);
+      TextView comentario = v.findViewById(R.id.Comentario);
       comentario.setText(lugar.getComentario());
       TextView fecha = v.findViewById(R.id.fecha);
       fecha.setText(DateFormat.getDateInstance().format(
@@ -141,33 +133,17 @@ public class VistaLugarFragment extends Fragment {
                     pos = adaptador.posicionId(_id);
                  }
               });
-      usoLugar.visualizarFoto(lugar, foto);
+
    }
 
    @Override /*protected*/ public void onActivityResult(int requestCode, int resultCode,
                                                         Intent data) {
       //super.onActivityResult(requestCode,resultCode, data);
 
-      if (requestCode == RESULTADO_EDITAR) {
-         //int id = adaptador.idPosicion(pos);
-         lugar = lugares.elemento(_id);
-         //adaptador.cursor = lugares.extraeCursor();
-         pos = adaptador.posicionId(_id);
+
          actualizaVistas();
-      } else if (requestCode == RESULTADO_GALERIA) {
-         if (resultCode == Activity.RESULT_OK) {
-            usoLugar.ponerFoto(pos, data.getDataString(), foto);
-         } else {
-            Toast.makeText(getActivity(), "Foto no cargada", Toast.LENGTH_LONG).show();
-         }
-      } else if (requestCode == RESULTADO_FOTO) {
-         if (resultCode == Activity.RESULT_OK && uriUltimaFoto != null) {
-            lugar.setFoto(uriUltimaFoto.toString());
-            usoLugar.ponerFoto(pos, lugar.getFoto(), foto);
-         } else {
-            Toast.makeText(getActivity(), "Error en captura", Toast.LENGTH_LONG).show();
-         }
-      }
+
+
    }
 
    @Override

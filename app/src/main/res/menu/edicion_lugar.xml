@@ -10,5 +10,7 @@
            android:id="@+id/accion_guardar"
            android:title="GUARDAR"
            android:orderInCategory="20"
-           app:showAsAction="always"/>
+           app:showAsAction="always"
+       style="@"
+       />
 </menu>

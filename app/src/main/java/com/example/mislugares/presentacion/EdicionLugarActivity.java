@@ -71,12 +71,13 @@ public class EdicionLugarActivity extends AppCompatActivity {
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
+        int tele = Integer.parseInt(telefono.getText().toString());
         switch (item.getItemId()) {
             case R.id.accion_guardar:
                 lugar.setNombre(nombre.getText().toString());
                 lugar.setTipo(TipoLugar.values()[tipo.getSelectedItemPosition()]);
                 lugar.setDireccion(direccion.getText().toString());
-                lugar.setTelefono(Integer.parseInt(telefono.getText().toString()));
+                lugar.setTelefono(tele);
                 lugar.setUrl(url.getText().toString());
                 lugar.setComentario(comentario.getText().toString());
                 if (_id==-1) _id = adaptador.idPosicion(pos);

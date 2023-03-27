@@ -25,13 +25,13 @@ import androidx.fragment.app.FragmentActivity;
 public class MapaActivity extends FragmentActivity
         implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
     private GoogleMap mapa;
-    //private RepositorioLugares lugares;
+
     private AdaptadorLugaresBD adaptador;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mapa);
-        //lugares = ((Aplicacion) getApplication()).lugares;
+
         adaptador = ((Aplicacion) getApplication()).adaptador;
         SupportMapFragment mapFragment = (SupportMapFragment)
                 getSupportFragmentManager().findFragmentById(R.id.mapa);

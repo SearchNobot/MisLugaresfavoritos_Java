@@ -9,119 +9,141 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/relativeLayout">
+
         <TextView
             android:id="@+id/t_nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="Nombre:"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
         <EditText
             android:id="@+id/nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="algo que identifique el lugar"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="Algo que identifique el lugar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/t_nombre"
-            android:layout_marginStart="8dp">
-            <requestFocus/>
+            app:layout_constraintTop_toBottomOf="@id/t_nombre">
+
+            <requestFocus />
         </EditText>
+
         <TextView
             android:id="@+id/t_tipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="Tipo:"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nombre"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/nombre" />
         <Spinner
             android:id="@+id/tipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@id/t_tipo"
             app:layout_constraintLeft_toRightOf="@id/t_tipo"/>
+
         <TextView
             android:id="@+id/t_direccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="Dirección:"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/t_tipo"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/t_tipo" />
+
         <EditText
             android:id="@+id/direccion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="dirección del lugar"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="Dirección del lugar"
             android:inputType="textPostalAddress"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/t_direccion"
-            android:layout_marginStart="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/t_direccion" />
+
         <TextView
             android:id="@+id/t_telefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="Telefono:"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/direccion"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/direccion" />
+
         <EditText
             android:id="@+id/telefono"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="teléfono para contactar"
-            android:inputType="phone"
-            app:layout_constraintLeft_toRightOf="@id/t_telefono" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintStart_toEndOf="@+id/t_telefono"
             android:layout_marginStart="8dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/t_telefono"/>
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/t_telefono"
+            app:layout_constraintStart_toEndOf="@+id/t_telefono"
+            app:layout_constraintTop_toBottomOf="@+id/direccion" />
+
         <TextView
             android:id="@+id/t_url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="Url:"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/telefono"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/telefono" />
+
         <EditText
             android:id="@+id/url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="página web"
+            android:layout_marginStart="8dp"
+            android:hint="Página web"
             android:inputType="textUri"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/t_url"
-            android:layout_marginStart="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/t_url" />
+
         <TextView
             android:id="@+id/t_comentario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="Comentario:"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/url"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/url" />
+
         <EditText
             android:id="@+id/comentario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:hint="introduce tus notas"
             android:inputType="textMultiLine"
+            android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/t_comentario"
-            android:layout_marginStart="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/t_comentario" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

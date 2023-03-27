@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -143,97 +144,6 @@ public class CasosUsoLugar {
               ? Uri.parse("geo:" + lat + ',' + lon)
               : Uri.parse("geo:0,0?q=" + lugar.getDireccion());
       actividad.startActivity(new Intent("android.intent.action.VIEW", uri));
-   }
-
-
-   // FOTOGRAFÍAS
-   public void ponerDeGaleria(int codidoSolicitud) {
-      String action;
-      if (android.os.Build.VERSION.SDK_INT >= 19) { // API 19 - Kitkat
-         action = Intent.ACTION_OPEN_DOCUMENT;
-      } else {
-         action = Intent.ACTION_PICK;
-      }
-      Intent i = new Intent(action,
-              MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-      i.addCategory(Intent.CATEGORY_OPENABLE);
-      i.setType("image/*");
-      if (fragment != null)
-         fragment.startActivityForResult(i, codidoSolicitud);
-      else actividad.startActivityForResult(i, codidoSolicitud);
-
-   }
-
-   public void ponerFoto(int pos, String uri, ImageView imageView) {
-      Lugar lugar = adaptador.lugarPosicion(pos);//lugares.elemento(pos);
-      lugar.setFoto(uri);
-      visualizarFoto(lugar, imageView);
-      actualizaPosLugar(pos, lugar);
-   }
-
-   public void visualizarFoto(Lugar lugar, ImageView imageView) {
-      if (lugar.getFoto() != null && !lugar.getFoto().isEmpty()) {
-         imageView.setImageBitmap(reduceBitmap(actividad, lugar.getFoto(), 1024, 1024));
-      } else {
-         imageView.setImageBitmap(null);
-      }
-   }
-
-   public Uri tomarFoto(int codidoSolicitud) {
-      try {
-         Uri uriUltimaFoto;
-         File file = File.createTempFile(
-                 "img_" + (System.currentTimeMillis() / 1000), ".jpg",
-                 actividad.getExternalFilesDir(Environment.DIRECTORY_PICTURES));
-         if (Build.VERSION.SDK_INT >= 24) {
-            uriUltimaFoto = FileProvider.getUriForFile(
-                    actividad, "es.upv.jtomas.mislugares.fileProvider2", file);
-         } else {
-            uriUltimaFoto = Uri.fromFile(file);
-         }
-         Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-         //intent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-         i.putExtra(MediaStore.EXTRA_OUTPUT, uriUltimaFoto);
-         //actividad.startActivityForResult(i, codidoSolicitud);
-         if (fragment != null)
-            fragment.startActivityForResult(i, codidoSolicitud);
-         else actividad.startActivityForResult(i, codidoSolicitud);
-         return uriUltimaFoto;
-      } catch (IOException ex) {
-         Toast.makeText(actividad, "Error al crear fichero de imagen",
-                 Toast.LENGTH_LONG).show();
-         return null;
-      }
-   }
-
-   private Bitmap reduceBitmap(Context contexto, String uri,
-                               int maxAncho, int maxAlto) {
-      try {
-         InputStream input = null;
-         Uri u = Uri.parse(uri);
-         if (u.getScheme().equals("http") || u.getScheme().equals("https")) {
-            input = new URL(uri).openStream();
-         } else {
-            input = contexto.getContentResolver().openInputStream(u);
-         }
-         final BitmapFactory.Options options = new BitmapFactory.Options();
-         options.inJustDecodeBounds = true;
-         options.inSampleSize = (int) Math.max(
-                 Math.ceil(options.outWidth / maxAncho),
-                 Math.ceil(options.outHeight / maxAlto));
-         options.inJustDecodeBounds = false;
-         return BitmapFactory.decodeStream(input, null, options);
-      } catch (FileNotFoundException e) {
-         Toast.makeText(contexto, "Fichero/recurso de imagen no encontrado",
-                 Toast.LENGTH_LONG).show();
-         e.printStackTrace();
-         return null;
-      } catch (IOException e) {
-         Toast.makeText(contexto, "Error accediendo a imagen",
-                 Toast.LENGTH_LONG).show();
-         e.printStackTrace();
-         return null;
-      }
    }
 
 }

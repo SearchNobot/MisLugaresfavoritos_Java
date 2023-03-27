@@ -1,5 +1,6 @@
 package com.example.mislugares.presentacion;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,11 +32,12 @@ public class AdaptadorLugares extends
         public ImageView foto;
         public RatingBar valoracion;
         public TextView distancia;
+        int id;
         public ViewHolder(View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.nombre);
             direccion = itemView.findViewById(R.id.direccion);
-            foto = itemView.findViewById(R.id.foto);
+            foto = itemView.findViewById(R.id.imagenlugar);
             valoracion= itemView.findViewById(R.id.valoracion);
             distancia = itemView.findViewById(R.id.distancia);
         }
@@ -43,7 +45,7 @@ public class AdaptadorLugares extends
         public void personaliza(Lugar lugar) {
             nombre.setText(lugar.getNombre());
             direccion.setText(lugar.getDireccion());
-            int id = R.drawable.otros;
+
             switch(lugar.getTipo()) {
                 case RESTAURANTE:id = R.drawable.restaurante; break;
                 case BAR:    id = R.drawable.bar;     break;
@@ -54,9 +56,11 @@ public class AdaptadorLugares extends
                 case EDUCACION: id = R.drawable.educacion;  break;
                 case DEPORTE:  id = R.drawable.deporte;   break;
                 case NATURALEZA: id = R.drawable.naturaleza; break;
-                case GASOLINERA: id = R.drawable.gasolinera; break;  }
+                case GASOLINERA: id = R.drawable.gasolinera; break;
+                case TALLER: id = R.drawable.taller; break;
+            }
+
             foto.setImageResource(id);
-            foto.setScaleType(ImageView.ScaleType.FIT_END);
             valoracion.setRating(lugar.getValoracion());
 
 
